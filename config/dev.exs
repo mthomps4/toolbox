@@ -2,7 +2,7 @@ use Mix.Config
 
 # Configure your database
 config :toolbox, Toolbox.Repo,
-  username: "mthomps4",
+  username: "postgres",
   password: "postgres",
   database: "toolbox_dev",
   hostname: "localhost",

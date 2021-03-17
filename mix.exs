@@ -20,7 +20,7 @@ defmodule Toolbox.MixProject do
   def application do
     [
       mod: {Toolbox.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :elixir_xml_to_map]
     ]
   end
 
@@ -50,7 +50,8 @@ defmodule Toolbox.MixProject do
       {:ex_aws, "~> 2.1"},
       {:ex_aws_ec2, "~> 2.0"},
       {:hackney, "~> 1.9"},
-      {:sweet_xml, "~> 0.6"}
+      {:sweet_xml, "~> 0.6"},
+      {:elixir_xml_to_map, "~> 2.0"}
     ]
   end
 

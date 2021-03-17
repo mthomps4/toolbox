@@ -1,5 +1,6 @@
 defmodule ToolboxWeb.Router do
   use ToolboxWeb, :router
+  import Plug.BasicAuth
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -14,10 +15,15 @@ defmodule ToolboxWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug :basic_auth, Application.compile_env(:toolbox, :basic_auth)
+  end
+
   scope "/", ToolboxWeb do
     pipe_through :browser
-
-    live "/", PageLive, :index
+    pipe_through :auth
+    live "/", HomePageLive, :index
+    live "/devbox", DevBoxLive, :index
   end
 
   # Other scopes may use custom stacks.
