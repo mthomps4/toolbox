@@ -42,7 +42,7 @@ defmodule ToolboxWeb.DevBoxLive do
 
   def mount(_params, _session, socket) do
     if connected?(socket) do
-      :timer.send_interval(1000, self(), :status)
+      :timer.send_interval(10_000, self(), :status)
     end
 
     {:ok, assign(socket, devbox: EC2.instance_by_id(@devbox_id))}
