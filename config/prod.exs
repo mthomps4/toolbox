@@ -10,7 +10,8 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :toolbox, ToolboxWeb.Endpoint,
-  url: [host: "example.com", port: 80],
+  url: [host: "https://toolbox.gigalixirapp.com", port: 80],
+  check_origin: ["https://3wirebuild.tools", "https://toolbox.gigalixirapp.com"],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
