@@ -22,6 +22,7 @@ defmodule ToolboxWeb.Router do
   scope "/", ToolboxWeb do
     pipe_through :browser
     pipe_through :auth
+
     live "/", HomePageLive, :index
     live "/devbox", DevBoxLive, :index
   end

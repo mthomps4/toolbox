@@ -20,7 +20,7 @@ defmodule Toolbox.MixProject do
   def application do
     [
       mod: {Toolbox.Application, []},
-      extra_applications: [:logger, :runtime_tools, :elixir_xml_to_map]
+      extra_applications: [:logger, :runtime_tools, :httpoison]
     ]
   end
 
@@ -47,11 +47,11 @@ defmodule Toolbox.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:ex_aws, "~> 2.1"},
-      {:ex_aws_ec2, "~> 2.0"},
-      {:hackney, "~> 1.9"},
-      {:sweet_xml, "~> 0.6"},
-      {:elixir_xml_to_map, "~> 2.0"}
+      {:httpoison, "~> 1.8"},
+      {:goth, "~> 1.3-rc"},
+      {:hackney, "~> 1.17"},
+      {:nodejs, "~> 2.0"},
+      {:google_api_compute, "~> 0.34.0"}
     ]
   end
 

@@ -26,16 +26,12 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-config :ex_aws,
-  region: {:system, "AWS_REGION"},
-  json_codec: Jason
+config :toolbox,
+  debox_id: System.get_env("DEVBOX_ID", nil)
 
 config :toolbox, :basic_auth,
   username: System.get_env("AUTH_NAME"),
   password: System.get_env("AUTH_PASSWORD")
-
-config :toolbox,
-  debox_id: System.get_env("DEVBOX_ID", nil)
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

@@ -31,25 +31,29 @@ defmodule ToolboxWeb.DevBoxLive do
     """
   end
 
-  def handle_info(:status, socket) do
-    devbox = EC2.instance_by_id(@devbox_id)
-    socket = assign(socket, devbox: devbox)
+  # def handle_info(:status, socket) do
+  #   devbox = EC2.instance_by_id(@devbox_id)
+  #   socket = assign(socket, devbox: devbox)
 
-    {:noreply, socket}
-  end
+  #   {:noreply, socket}
+  # end
 
-  def handle_event("on", _value, socket) do
-    EC2.start(@devbox_id)
-    {:noreply, socket}
-  end
+  # def handle_event("on", _value, socket) do
+  #   EC2.start(@devbox_id)
+  #   {:noreply, socket}
+  # end
 
-  def handle_event("off", _value, socket) do
-    EC2.stop(@devbox_id)
-    {:noreply, socket}
-  end
+  # def handle_event("off", _value, socket) do
+  #   EC2.stop(@devbox_id)
+  #   {:noreply, socket}
+  # end
 
-  def handle_event("restart", _value, socket) do
-    EC2.reboot(@devbox_id)
+  # def handle_event("restart", _value, socket) do
+  #   EC2.reboot(@devbox_id)
+  #   {:noreply, socket}
+  # end
+
+  def handle_event("status", socket) do
     {:noreply, socket}
   end
 end
