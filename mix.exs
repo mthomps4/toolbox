@@ -47,6 +47,7 @@ defmodule Toolbox.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
+      {:pow, "~> 1.0.23"},
       {:httpoison, "~> 1.8"},
       {:goth, "~> 1.3-rc"},
       {:hackney, "~> 1.17"},

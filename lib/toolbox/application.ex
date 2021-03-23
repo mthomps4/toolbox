@@ -11,24 +11,7 @@ defmodule Toolbox.Application do
       |> System.fetch_env!()
       |> Jason.decode!()
 
-    IO.inspect(credentials, label: "CREDS")
-
     source = {:service_account, credentials, []}
-
-    # credentials = %{
-    #   "type" => System.fetch_env!("GCP_TYPE"),
-    #   "project_id" => System.fetch_env!("GCP_PROJECT_ID"),
-    #   "private_key_id" => System.fetch_env!("GCP_PRIVATE_KEY_ID"),
-    #   "private_key" => System.fetch_env!("GCP_PRIVATE_KEY"),
-    #   "client_email" => System.fetch_env!("GCP_CLIENT_EMAIL"),
-    #   "client_id" => System.fetch_env!("GCP_CLIENT_ID"),
-    #   "auth_uri" => System.fetch_env!("GCP_AUTH_URI"),
-    #   "token_uri" => System.fetch_env!("GCP_TOKEN_URI"),
-    #   "auth_provider_x509_cert_url" => System.fetch_env!("GCP_AUTH_CERT_URL"),
-    #   "client_x509_cert_url" => System.fetch_env!("GCP_CLIENT_CERT_URL")
-    # }
-
-    # source = {:service_account, credentials, []}
 
     children = [
       # Start the Ecto repository
