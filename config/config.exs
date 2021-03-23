@@ -27,7 +27,9 @@ config :logger, :console,
 config :phoenix, :json_library, Jason
 
 config :toolbox,
-  debox_id: System.get_env("DEVBOX_ID", nil)
+  devbox_project_id: System.get_env("DEVBOX_PROJECT_ID", nil),
+  devbox_instance_id: System.get_env("DEVBOX_INSTANCE_ID", nil),
+  devbox_zone: System.get_env("DEVBOX_ZONE", nil)
 
 config :toolbox, :basic_auth,
   username: System.get_env("AUTH_NAME"),

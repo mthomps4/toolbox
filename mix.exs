@@ -50,8 +50,7 @@ defmodule Toolbox.MixProject do
       {:httpoison, "~> 1.8"},
       {:goth, "~> 1.3-rc"},
       {:hackney, "~> 1.17"},
-      {:nodejs, "~> 2.0"},
-      {:google_api_compute, "~> 0.34.0"}
+      {:nodejs, "~> 2.0"}
     ]
   end
 

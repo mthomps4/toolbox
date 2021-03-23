@@ -11,6 +11,8 @@ defmodule Toolbox.Application do
       |> System.fetch_env!()
       |> Jason.decode!()
 
+    IO.inspect(credentials, label: "CREDS")
+
     source = {:service_account, credentials, []}
 
     # credentials = %{
@@ -39,7 +41,7 @@ defmodule Toolbox.Application do
       ToolboxWeb.Endpoint,
       # Start a worker by calling: Toolbox.Worker.start_link(arg)
       # {Toolbox.Worker, arg}
-      # {Goth, name: Toolbox.Goth, source: source}
+      {Goth, name: Toolbox.Goth, source: source},
       {NodeJS.Supervisor, path: "./assets/node_scripts/", pool_size: 4}
     ]
 

@@ -1,8 +1,8 @@
 defmodule ToolboxWeb.DevBoxLive do
   use ToolboxWeb, :live_view
-  alias Toolbox.AWS.EC2
+  # alias Toolbox.AWS.EC2
 
-  @devbox_id Application.get_env(:toolbox, :debox_id, nil)
+  # @devbox_id Application.get_env(:toolbox, :debox_id, nil)
   @status_interval 1000
 
   def mount(_params, _session, socket) do
@@ -10,7 +10,7 @@ defmodule ToolboxWeb.DevBoxLive do
       :timer.send_interval(@status_interval, self(), :status)
     end
 
-    {:ok, assign(socket, devbox: EC2.instance_by_id(@devbox_id))}
+    # {:ok, assign(socket, devbox: EC2.instance_by_id(@devbox_id))}
   end
 
   def render(assigns) do
