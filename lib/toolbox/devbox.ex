@@ -5,7 +5,12 @@ defmodule Toolbox.Devbox do
 
   alias Toolbox.Gcp.CloudEngine
 
-  def get_status do
-    CloudEngine.get_status(%{instance_id: @instance_id, project_id: @project_id, zone: @zone})
-  end
+  def get_status,
+    do: CloudEngine.get_status(%{instance_id: @instance_id, project_id: @project_id, zone: @zone})
+
+  def start,
+    do: CloudEngine.start(%{instance_id: @instance_id, project_id: @project_id, zone: @zone})
+
+  def stop,
+    do: CloudEngine.stop(%{instance_id: @instance_id, project_id: @project_id, zone: @zone})
 end
