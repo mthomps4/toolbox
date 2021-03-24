@@ -1,6 +1,11 @@
 defmodule ToolboxWeb.Router do
   use ToolboxWeb, :router
-  import Plug.BasicAuth
+  use Pow.Phoenix.Router
+
+  pipeline :protected do
+    plug Pow.Plug.RequireAuthenticated,
+      error_handler: Pow.Phoenix.PlugErrorHandler
+  end
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -15,14 +20,19 @@ defmodule ToolboxWeb.Router do
     plug :accepts, ["json"]
   end
 
-  pipeline :auth do
-    plug :basic_auth, Application.compile_env(:toolbox, :basic_auth)
+  scope "/" do
+    pipe_through :browser
+    pow_routes()
   end
 
   scope "/", ToolboxWeb do
     pipe_through :browser
-    pipe_through :auth
     live "/", HomePageLive, :index
+  end
+
+  scope "/", ToolboxWeb do
+    pipe_through [:browser, :protected]
+
     live "/devbox", DevBoxLive, :index
   end
 
