@@ -1,0 +1,4 @@
+<div>
+  <h3>Tools: </h3>
+  <li><%= link "DevBox", to: Routes.dev_box_path(@conn, :index)%></li>
+</div>

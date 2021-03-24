@@ -29,9 +29,11 @@
     -->
     <header>
       <div>
-        <li><%= link "Home", to: Routes.home_page_path(@conn, :index) %></li>
-        <li><%= link "Login", to: Routes.pow_session_path(@conn, :new) %></li>
-      </div>
+        <%= if @conn.assigns.current_user do %>
+          <li><%= link "Home", to: Routes.page_path(@conn, :index) %></li>
+          <li><%= link "Logout", to: Routes.pow_session_path(@conn, :delete), method: :delete %></li>
+        <% end %>
+       </div>
     </header>
     <%= @inner_content %>
   </body>

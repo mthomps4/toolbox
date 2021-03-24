@@ -22,17 +22,24 @@ defmodule ToolboxWeb.Router do
 
   scope "/" do
     pipe_through :browser
-    pow_routes()
+    pow_session_routes()
   end
 
-  scope "/", ToolboxWeb do
-    pipe_through :browser
-    live "/", HomePageLive, :index
-  end
+  # scope "/", Pow.Phoenix, as: "pow" do
+  #   pipe_through [:browser, :protected]
+
+  #   resources "/registration", RegistrationController,
+  #     singleton: true,
+  #     only: [:edit, :update, :delete]
+  # end
+
+  # scope "/", ToolboxWeb do
+  #   pipe_through :browser
+  # end
 
   scope "/", ToolboxWeb do
     pipe_through [:browser, :protected]
-
+    get "/", PageController, :index
     live "/devbox", DevBoxLive, :index
   end
 
