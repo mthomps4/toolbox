@@ -26,7 +26,7 @@ defmodule Toolbox.Gcp.CloudEngine do
     with {:ok, %{token: token}} <- Gcp.authenticate() do
       headers = [{"Authorization", "Bearer #{token}"}]
 
-      HTTPoison.post(url, nil, headers)
+      HTTPoison.post(url, "", headers)
       |> parse_response()
     else
       e -> {:error, e}
@@ -42,7 +42,7 @@ defmodule Toolbox.Gcp.CloudEngine do
     with {:ok, %{token: token}} <- Gcp.authenticate() do
       headers = [{"Authorization", "Bearer #{token}"}]
 
-      HTTPoison.post(url, nil, headers)
+      HTTPoison.post(url, "", headers)
       |> parse_response()
     else
       e -> {:error, e}
