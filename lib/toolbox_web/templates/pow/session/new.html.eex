@@ -1,21 +1,36 @@
-<h1>Sign in</h1>
-
-<%= form_for @changeset, @action, [as: :user], fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
-    </div>
-  <% end %>
-
-  <%= label f, Pow.Ecto.Schema.user_id_field(@changeset) %>
-  <%= text_input f, Pow.Ecto.Schema.user_id_field(@changeset) %>
-  <%= error_tag f, Pow.Ecto.Schema.user_id_field(@changeset) %>
-
-  <%= label f, :password %>
-  <%= password_input f, :password %>
-  <%= error_tag f, :password %>
-
-  <div>
-    <%= submit "Sign in" %>
+<div class="flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-md">
+  <div class="flex flex-col justify-center items-center">
+      <h1 class="text-4xl font-extrabold italic text-coolGray-600">3wirebuild</h1>
+      <p class="text-2xl font-extrabold italic text-coolGray-600">Toolbox</p>
   </div>
-<% end %>
+
+    <h2 class="mt-6 text-center text-xl font-extrabold text-lightBlue-600">
+      Sign in to your account
+    </h2>
+  </div>
+
+  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="bg-coolGray-50 py-8 px-4 shadow-xl sm:rounded-lg sm:px-10">
+      <%= form_for @changeset, @action, [as: :user, class: "space-y-6",],  fn f -> %>
+        <%= if @changeset.action do %>
+          <div class="alert alert-danger">
+            <p>Oops, something went wrong! Please check the errors below.</p>
+          </div>
+        <% end %>
+
+        <%= label f, Pow.Ecto.Schema.user_id_field(@changeset), class: "block text-sm font-medium text-coolGray-700" %>
+        <%= text_input f, Pow.Ecto.Schema.user_id_field(@changeset), class: "appearance-none block w-full px-3 py-2 border border-coolGray-300 rounded-md shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-lightBlue-500 focus:border-lightBlue-500 sm:text-sm" %>
+        <%= error_tag f, Pow.Ecto.Schema.user_id_field(@changeset) %>
+
+        <%= label f, :password, class: "block text-sm font-medium text-coolGray-700" %>
+        <%= password_input f, :password, class: "appearance-none block w-full px-3 py-2 border border-coolGray-300 rounded-md shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-lightBlue-500 focus:border-lightBlue-500 sm:text-sm" %>
+        <%= error_tag f, :password %>
+
+        <div>
+          <%= submit "Sign in", class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-lightBlue-600 hover:bg-lightBlue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightBlue-500" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

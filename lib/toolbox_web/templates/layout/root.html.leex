@@ -1,32 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="m-0 p-0 bg-gradient-to-tl from-pink-200 via-blue-200 to-green-50">
   <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <%= csrf_meta_tag() %>
-    <%= live_title_tag assigns[:page_title] || "Toolbox", suffix: " · Phoenix Framework" %>
+    <%= live_title_tag assigns[:page_title] || "Toolbox", suffix: " · 3wirebuild" %>
     <link phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
-  <body>
-<!--
-    <header>
-      <section class="container">
-        <nav role="navigation">
-          <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
-            <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-              <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
-            <% end %>
-          </ul>
-        </nav>
-        <a href="https://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
-        </a>
-      </section>
-    </header>
-    -->
+  <body class="flex flex-col max-w-xs m-auto">
+
     <header>
       <div>
         <%= if @conn.assigns.current_user do %>
@@ -35,6 +20,8 @@
         <% end %>
        </div>
     </header>
+
     <%= @inner_content %>
+
   </body>
 </html>
