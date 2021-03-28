@@ -51,7 +51,8 @@ defmodule Toolbox.MixProject do
       {:httpoison, "~> 1.8"},
       {:goth, "~> 1.3-rc"},
       {:hackney, "~> 1.17"},
-      {:nodejs, "~> 2.0"}
+      {:nodejs, "~> 2.0"},
+      {:distillery, "~> 2.1"}
     ]
   end
 
