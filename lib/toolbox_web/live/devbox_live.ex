@@ -10,41 +10,56 @@ defmodule ToolboxWeb.DevBoxLive do
       :timer.send_interval(@status_interval, self(), :status)
     end
 
-    {:ok, assign(socket, devbox: nil, status: nil, id: nil)}
+    {:ok, assign(socket, devbox: nil, status: nil, status_color: "coolGray")}
   end
 
   def render(assigns) do
     ~L"""
-      <div>
+      <div class="bg-coolGray-100 py-10 px-4 min-h-full">
         <%= unless @devbox == nil do %>
-          <p style="color:#CCC"><%= @id %></p>
-          <p>DevBox Status: <%= @status %></p>
+          <div class="flex justify-center align-center items-center">
 
-          <%= if InstanceStatus.is_booting(@status) do %>
-            <p> DevBox is booting... please wait.
-          <% end %>
+            <svg class="text-<%=#{@status_color}%>-500 h-6 animate-pulse" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm14 1a1 1 0 11-2 0 1 1 0 012 0zM2 13a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 01-2 2H4a2 2 0 01-2-2v-2zm14 1a1 1 0 11-2 0 1 1 0 012 0z" clip-rule="evenodd" />
+            </svg>
 
-          <%= if InstanceStatus.is_running(@status) do %>
-            <p> DevBox is running!
-            <button phx-click="off">Turn Off</button>
-          <% end %>
+            <h2 class="ml-2 text-3xl text-coolGray-500 font-semibold"> DevBox </h2>
+          </div>
 
-          <%= if InstanceStatus.is_stopping(@status) do %>
-            <p> DevBox is shutting down... please wait.
-          <% end %>
+          <div class="my-10 mx-2 flex flex-col">
+            <p> <%= @status %> </p>
+            <button phx-click="off" class="my-4 px-4 py-2 bg-lightBlue-500 text-coolGray-100">Turn Off</button>
+          </div>
 
-          <%= if InstanceStatus.is_terminated(@status) do %>
-            <p> DevBox is off.
-            <button phx-click="on">Turn On</button>
-          <% end %>
-        <% end %>
+          <%# if InstanceStatus.is_booting(@status) do %>
+
+          <%# if InstanceStatus.is_running(@status) do %>
+
+          <%# if InstanceStatus.is_stopping(@status) do %>
+
+          <%# if InstanceStatus.is_terminated(@status) do %>
+
+          <button phx-click="on" class="my-4 px-4 py-2 bg-lightBlue-500 text-coolGray-100">Turn On</button>
+          <button phx-click="off" class="my-4 px-4 py-2 bg-lightBlue-500 text-coolGray-100">Turn Off</button>
+      <% end %>
       </div>
     """
   end
 
   def handle_info(:status, socket) do
     {:ok, devbox} = Devbox.get_status()
-    socket = assign(socket, devbox: devbox, status: devbox["status"], id: Ecto.UUID.generate())
+    status = devbox["status"]
+
+    status_color =
+      cond do
+        InstanceStatus.is_booting(status) -> "amber"
+        InstanceStatus.is_running(status) -> "green"
+        InstanceStatus.is_stopping(status) -> "orange"
+        InstanceStatus.is_terminated(status) -> "red"
+        true -> "red"
+      end
+
+    socket = assign(socket, devbox: devbox, status: devbox["status"], status_color: status_color)
 
     {:noreply, socket}
   end
