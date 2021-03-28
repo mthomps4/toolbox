@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="m-0 p-0 bg-gradient-to-tl from-pink-200 via-blue-200 to-green-50">
+<html lang="en" class="m-0 p-0">
   <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -10,16 +10,17 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
-  <body class="flex flex-col max-w-xs m-auto">
+  <body class="m-0 p-0 min-h-screen bg-no-repeat bg-gradient-to-tl from-pink-200 via-blue-200 to-green-50 flex flex-col max-w-xs m-auto">
 
-    <header>
-      <div>
-        <%= if @conn.assigns.current_user do %>
-          <li><%= link "Home", to: Routes.page_path(@conn, :index) %></li>
-          <li><%= link "Logout", to: Routes.pow_session_path(@conn, :delete), method: :delete %></li>
-        <% end %>
-       </div>
-    </header>
+    <%= if @conn.assigns.current_user do %>
+      <nav class="mt-10 bg-coolGray-200">
+        <div class="p-4 flex justify-between items-center">
+          <%= link "Home", to: Routes.page_path(@conn, :index), class: "px-4 py-2 hover:underline text-lightBlue-700" %>
+          <%= link "Logout", to: Routes.pow_session_path(@conn, :delete), method: :delete, class: "text-lightBlue-700 bg-rose-800 rounded-lg px-4 py-2 hover:bg-rose-600 text-coolGray-200" %>
+        </div>
+      </nav>
+    <% end %>
+
 
     <%= @inner_content %>
 
