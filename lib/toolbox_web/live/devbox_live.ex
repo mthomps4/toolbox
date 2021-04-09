@@ -19,29 +19,39 @@ defmodule ToolboxWeb.DevBoxLive do
         <%= unless @devbox == nil do %>
           <div class="flex justify-center align-center items-center">
 
-            <svg class="text-<%=#{@status_color}%>-500 h-6 animate-pulse" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <svg class="text-<%= @status_color %>-500 h-6 animate-pulse" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm14 1a1 1 0 11-2 0 1 1 0 012 0zM2 13a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 01-2 2H4a2 2 0 01-2-2v-2zm14 1a1 1 0 11-2 0 1 1 0 012 0z" clip-rule="evenodd" />
             </svg>
 
             <h2 class="ml-2 text-3xl text-coolGray-500 font-semibold"> DevBox </h2>
           </div>
 
-          <div class="my-10 mx-2 flex flex-col">
-            <p> <%= @status %> </p>
-            <button phx-click="off" class="my-4 px-4 py-2 bg-lightBlue-500 text-coolGray-100">Turn Off</button>
-          </div>
+          <%= if InstanceStatus.is_booting(@status) do %>
+            <div class="my-10 mx-2 flex flex-col items-center align-center">
+              <p class="text-coolGray-700"> Server is starting...</p>
+            </div>
+          <% end %>
 
-          <%# if InstanceStatus.is_booting(@status) do %>
+          <%= if InstanceStatus.is_running(@status) do %>
+            <div class="my-10 mx-2 flex flex-col items-center align-center">
+              <p class="text-coolGray-700"> Server is running! </p>
+              <button phx-click="off" class="my-4 px-4 py-2 bg-red-700 text-coolGray-100">Turn Off</button>
+            </div>
+          <% end %>
 
-          <%# if InstanceStatus.is_running(@status) do %>
+          <%= if InstanceStatus.is_stopping(@status) do %>
+            <div class="my-10 mx-2 flex flex-col items-center align-center">
+              <p class="text-coolGray-700"> Shutting down...</p>
+            </div>
+          <% end %>
 
-          <%# if InstanceStatus.is_stopping(@status) do %>
-
-          <%# if InstanceStatus.is_terminated(@status) do %>
-
-          <button phx-click="on" class="my-4 px-4 py-2 bg-lightBlue-500 text-coolGray-100">Turn On</button>
-          <button phx-click="off" class="my-4 px-4 py-2 bg-lightBlue-500 text-coolGray-100">Turn Off</button>
-      <% end %>
+          <%= if InstanceStatus.is_terminated(@status) do %>
+            <div class="my-10 mx-2 flex flex-col items-center align-center">
+              <p class="text-coolGray-700"> Server is off! </p>
+              <button phx-click="on" class="my-4 px-4 py-2 bg-lightBlue-500 text-coolGray-100">Turn On</button>
+            </div>
+          <% end %>
+        <% end %>
       </div>
     """
   end
