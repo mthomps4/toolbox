@@ -1,17 +1,14 @@
 <div class="flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-  <div class="sm:mx-auto sm:w-full sm:max-w-md">
-  <div class="flex flex-col justify-center items-center">
-      <h1 class="text-4xl font-extrabold italic text-coolGray-600">3wirebuild</h1>
-      <p class="text-2xl font-extrabold italic text-coolGray-600">Toolbox</p>
-  </div>
-
-    <h2 class="mt-6 text-center text-xl font-extrabold text-lightBlue-600">
-      Sign in to your account
-    </h2>
-  </div>
 
   <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
     <div class="bg-coolGray-50 py-8 px-4 shadow-xl sm:rounded-lg sm:px-10">
+
+    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+      <div class="flex flex-col justify-center items-center">
+        <h1 class="text-3xl font-extrabold italic text-coolGray-500">3wirebuild</h1>
+        <p class="text-2xl font-extrabold italic text-coolGray-400">Toolbox</p>
+      </div>
+    </div>
       <%= form_for @changeset, @action, [as: :user, class: "space-y-6",],  fn f -> %>
         <%= if @changeset.action do %>
           <div class="alert alert-danger">
