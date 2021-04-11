@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
-  <body class="m-0 p-0 min-h-screen bg-no-repeat bg-gradient-to-tl from-pink-200 via-blue-200 to-green-50 flex flex-col max-w-xs m-auto">
+  <body class="p-0 min-h-screen bg-no-repeat bg-gradient-to-tl from-pink-200 via-blue-200 to-green-50 flex flex-col max-w-xs m-auto">
 
     <%= if @conn.assigns.current_user do %>
       <nav class="mt-10 bg-coolGray-200">

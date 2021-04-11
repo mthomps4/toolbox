@@ -63,8 +63,8 @@ defmodule ToolboxWeb.DevBoxLive do
     status_color =
       cond do
         InstanceStatus.is_booting(status) -> "amber"
-        InstanceStatus.is_running(status) -> "green"
-        InstanceStatus.is_stopping(status) -> "orange"
+        InstanceStatus.is_running(status) -> "emerald"
+        InstanceStatus.is_stopping(status) -> "amber"
         InstanceStatus.is_terminated(status) -> "red"
         true -> "red"
       end
